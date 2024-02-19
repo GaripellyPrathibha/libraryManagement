@@ -7,6 +7,19 @@ public class Member {
     private String lastName;
     private String emailAddress;
     private String phoneNumber;
+    public Member()
+    {
+
+    }
+
+    public Member(long memberId,String firstName,String lastName,String emailAddress,String phoneNumber) {
+
+        this.memberId = memberId;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.emailAddress=emailAddress;
+        this.phoneNumber=phoneNumber;
+    }
 
     public long getMemberId() {
         return memberId;
