@@ -20,6 +20,7 @@ public class MemberService {
     }
 
     public Member getMember(Long memberId) {
+        System.out.println("Searching for member with id:");
     return memberMap.get(memberId);
 
     }

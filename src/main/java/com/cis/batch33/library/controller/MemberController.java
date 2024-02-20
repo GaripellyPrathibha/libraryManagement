@@ -13,7 +13,8 @@ public class MemberController {
 
     @GetMapping("/{memberId}")
     public Member getMember(Long memberId){
-        return memberService.getMember(memberId);
+        Member member=memberService.getMember(memberId);
+        return member;
     }
 
     // create a member
