@@ -97,3 +97,42 @@ VALUES
 (5, 9780547928212, 9, '2023-02-18 11:00:00', '2023-03-04 11:00:00', TRUE),
 (6, 9780743273567, 10, '2023-02-16 14:30:00', '2023-03-02 14:30:00', FALSE);
 Select * from address;
+
+SELECT * FROM member
+WHERE first_name = 'John' AND phone_number = 1234567890;
+
+SELECT * FROM member;
+
+SELECT m.first_name, m.last_name, b.title, b.author_name
+FROM member m
+JOIN checkout c ON m.member_id = c.member_id
+JOIN isbn i ON c.isbn = i.isbn
+JOIN book b ON i.book_id = b.book_id
+WHERE m.first_name = 'John' AND m.last_name = 'Doe';
+
+INSERT INTO checkout (isbn, member_id, checkout_date, due_date, is_returned)
+VALUES (9780743273566, 1, '2024-02-26 14:00:00', '2024-03-12 14:00:00', FALSE);
+
+SELECT b.title, b.author_name, b.quantity - COUNT(c.id) AS available_quantity
+FROM book b
+LEFT JOIN isbn i ON b.book_id = i.book_id
+LEFT JOIN checkout c ON i.isbn = c.isbn
+GROUP BY b.title, b.author_name, b.quantity;
+
+SELECT * FROM checkout
+WHERE DATEDIFF(due_date, NOW()) = 2;
+
+SELECT * FROM checkout
+WHERE due_date < NOW() AND is_returned = FALSE;
+
+SELECT b.title, b.author_name, c.checkout_date
+FROM book b
+JOIN isbn i ON b.book_id = i.book_id
+JOIN checkout c ON i.isbn = c.isbn
+WHERE DATE(c.checkout_date) = CURDATE();
+
+SELECT b.title, b.author_name, i.isbn, c.checkout_date, c.due_date, c.is_returned
+FROM book b
+JOIN isbn i ON b.book_id = i.book_id
+LEFT JOIN checkout c ON i.isbn = c.isbn;
+
