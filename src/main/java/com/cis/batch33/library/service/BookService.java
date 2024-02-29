@@ -38,6 +38,7 @@ public class BookService {
 
         Integer bookId = new Random().nextInt();
         book.setBookId(bookId);
+        book.getIsbns().forEach(i -> { i.setLibraryBook(book); i.setBookId(bookId);});
         return bookRepository.save(book);
     }
 

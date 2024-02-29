@@ -1,6 +1,6 @@
 package com.cis.batch33.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import  com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,7 +26,7 @@ public class LibraryBook {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToMany(mappedBy = "libraryBook")
+    @OneToMany(mappedBy = "libraryBook", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<LibraryIsbn> isbns;
 
